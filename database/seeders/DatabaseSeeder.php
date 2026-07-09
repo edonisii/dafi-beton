@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Përdoruesi administrator
-        User::updateOrCreate(
+        // Përdoruesi administrator — krijohet vetëm herën e parë.
+        // firstOrCreate NUK e mbishkruan fjalëkalimin në deploy-et e ardhshme,
+        // kështu që fjalëkalimi i ndryshuar nga ti mbetet.
+        User::firstOrCreate(
             ['email' => 'admin@dafibeton.com'],
             [
                 'name' => 'Administratori',
