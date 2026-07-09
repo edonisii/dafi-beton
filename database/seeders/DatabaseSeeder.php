@@ -51,12 +51,12 @@ class DatabaseSeeder extends Seeder
 
         // Materialet bazë të një fabrike betoni
         $materials = [
-            ['name' => 'Rërë', 'unit' => 'm3', 'min_stock' => 20, 'stock' => 85],
-            ['name' => 'Zhavorr', 'unit' => 'm3', 'min_stock' => 20, 'stock' => 60],
-            ['name' => 'Çakull', 'unit' => 'm3', 'min_stock' => 15, 'stock' => 40],
+            ['name' => 'Rërë', 'unit' => 'ton', 'min_stock' => 30, 'stock' => 120],
+            ['name' => 'Zhavorr', 'unit' => 'ton', 'min_stock' => 30, 'stock' => 90],
+            ['name' => 'Çakull', 'unit' => 'ton', 'min_stock' => 25, 'stock' => 60],
             ['name' => 'Çimento', 'unit' => 'ton', 'min_stock' => 10, 'stock' => 6], // nën minimum → alarm
-            ['name' => 'Ujë', 'unit' => 'litër', 'min_stock' => 0, 'stock' => 5000],
-            ['name' => 'Aditiv (plastifikues)', 'unit' => 'litër', 'min_stock' => 50, 'stock' => 120],
+            ['name' => 'Ujë', 'unit' => 'ton', 'min_stock' => 0, 'stock' => 5],
+            ['name' => 'Aditiv (plastifikues)', 'unit' => 'ton', 'min_stock' => 1, 'stock' => 2],
         ];
 
         foreach ($materials as $data) {
@@ -66,13 +66,13 @@ class DatabaseSeeder extends Seeder
                 'min_stock' => $data['min_stock'],
             ]);
 
-            // Hyrje fillestare (blerje) që krijon stokun aktual
+            // Hyrje fillestare (blerje) që krijon stokun aktual — çmim për ton
             $unitPrice = match ($data['name']) {
-                'Rërë' => 8,
-                'Zhavorr' => 9,
-                'Çakull' => 11,
+                'Rërë' => 12,
+                'Zhavorr' => 13,
+                'Çakull' => 15,
                 'Çimento' => 95,
-                'Aditiv (plastifikues)' => 2.5,
+                'Aditiv (plastifikues)' => 1800,
                 default => null,
             };
 
