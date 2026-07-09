@@ -1,0 +1,59 @@
+# Blueprint për Render — një web service (Docker) + një bazë Postgres (falas).
+databases:
+  - name: dafi-beton-db
+    plan: free
+    databaseName: dafi_beton
+    user: dafi_beton
+
+services:
+  - type: web
+    name: dafi-beton
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /up
+    envVars:
+      - key: APP_NAME
+        value: "DAFI Beton"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_LOCALE
+        value: sq
+      # Vendose APP_KEY manualisht në Render (e gjeneruar për ty — shih udhëzimet).
+      - key: APP_KEY
+        sync: false
+      # APP_URL vendose pasi Render të japë linkun (https://dafi-beton.onrender.com)
+      - key: APP_URL
+        sync: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: SESSION_DRIVER
+        value: database
+      - key: CACHE_STORE
+        value: database
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: DB_HOST
+        fromDatabase:
+          name: dafi-beton-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: dafi-beton-db
+          property: port
+      - key: DB_DATABASE
+        fromDatabase:
+          name: dafi-beton-db
+          property: database
+      - key: DB_USERNAME
+        fromDatabase:
+          name: dafi-beton-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: dafi-beton-db
+          property: password
