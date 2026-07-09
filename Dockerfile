@@ -20,7 +20,5 @@ RUN composer dump-autoload --optimize --no-dev \
     && chmod -R 775 storage bootstrap/cache
 
 # Në nisje: migrimet + të dhënat fillestare (idempotente), pastaj serveri.
-# $PORT vendoset nga Render.
-CMD php artisan migrate --force \
-    && php artisan db:seed --force \
-    && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+# $PORT vendoset nga Render. Një rresht i vetëm për të shmangur çdo karakter CR/LF.
+CMD php artisan migrate --force && php artisan db:seed --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}

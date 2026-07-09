@@ -24,9 +24,8 @@ services:
       # Vendose APP_KEY manualisht në Render (e gjeneruar për ty — shih udhëzimet).
       - key: APP_KEY
         sync: false
-      # APP_URL vendose pasi Render të japë linkun (https://dafi-beton.onrender.com)
       - key: APP_URL
-        sync: false
+        value: https://dafi-beton.onrender.com
       - key: LOG_CHANNEL
         value: stderr
       - key: SESSION_DRIVER
