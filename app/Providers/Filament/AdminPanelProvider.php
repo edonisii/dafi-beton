@@ -29,6 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->profile() // faqja e profilit → ndryshimi i emrit dhe fjalëkalimit
             ->brandName('DAFI Beton — Menaxhimi i Stokut')
             ->colors([
                 'primary' => Color::Amber,
